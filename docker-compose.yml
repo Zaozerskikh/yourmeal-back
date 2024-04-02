@@ -10,6 +10,7 @@ services:
     build:
       context: .
       dockerfile: dockerfile
+    restart: always
     ports:
       - "1337:1337"
     volumes:
@@ -35,6 +36,8 @@ services:
       - "5432:5432"
     networks:
       - yourmeal-dev
+    volumes:
+      - ym-db-data:/var/lib/postgresql/data
 
   pg-admin:
     container_name: ym-pgadmin
@@ -49,3 +52,9 @@ services:
       - "5050:80"
     networks:
       - yourmeal-dev
+    volumes:
+      - ym-pg-admin-data:/var/lib/pgadmin4/data
+
+volumes:
+  ym-db-data:
+  ym-pg-admin-data:
