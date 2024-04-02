@@ -1,0 +1,51 @@
+version: '3'
+
+networks:
+  yourmeal-dev:
+    driver: bridge
+
+services:
+  strapi:
+    container_name: ym-back
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./:/srv/app
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - yourmeal-dev
+
+  db:
+    container_name: ym-db
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    networks:
+      - yourmeal-dev
+
+  pg-admin:
+    container_name: ym-pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    depends_on:
+      - db
+    ports:
+      - "5050:80"
+    networks:
+      - yourmeal-dev

@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "food_variations",
+  "info": {
+    "singularName": "food-variation",
+    "pluralName": "food-variations",
+    "displayName": "FoodVariation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "variationName": {
+      "type": "string",
+      "required": true
+    },
+    "variationType": {
+      "type": "enumeration",
+      "enum": [
+        "STANDARD",
+        "CUSTOM"
+      ],
+      "default": "STANDARD",
+      "required": true
+    },
+    "price": {
+      "type": "float",
+      "required": true
+    },
+    "weight": {
+      "type": "float"
+    },
+    "allowedDietsTags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::diet-tag.diet-tag"
+    },
+    "restrictedAllergyTags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::allergy-tag.allergy-tag"
+    },
+    "ingredients": {
+      "type": "text",
+      "required": true
+    },
+    "proteins": {
+      "type": "float"
+    },
+    "fats": {
+      "type": "float",
+      "required": true
+    },
+    "carbohydrates": {
+      "type": "float",
+      "default": 0
+    },
+    "calories": {
+      "required": true,
+      "type": "float"
+    },
+    "CFCB": {
+      "type": "text"
+    }
+  }
+}

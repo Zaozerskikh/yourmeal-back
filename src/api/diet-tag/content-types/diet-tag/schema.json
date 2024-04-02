@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "diet_tags",
+  "info": {
+    "singularName": "diet-tag",
+    "pluralName": "diet-tags",
+    "displayName": "DietTag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tag": {
+      "type": "enumeration",
+      "enum": [
+        "Вегетарианство",
+        "Веганство",
+        "Спортивное питание",
+        "Здоровое сердце",
+        "Здоровый ЖКТ",
+        "Диабетическое питание",
+        "Низкобелковое",
+        "Менее 500 ккал"
+      ],
+      "required": true
+    }
+  }
+}

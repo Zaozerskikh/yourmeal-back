@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "restaraunt_info_tags",
+  "info": {
+    "singularName": "restaraunt-info-tag",
+    "pluralName": "restaraunt-info-tags",
+    "displayName": "RestarauntInfoTag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tag": {
+      "type": "enumeration",
+      "enum": [
+        "Веган-Френдли",
+        "Авторская кухня",
+        "Диетические блюда"
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "allergy_tags",
+  "info": {
+    "singularName": "allergy-tag",
+    "pluralName": "allergy-tags",
+    "displayName": "AllergyTag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tag": {
+      "type": "enumeration",
+      "enum": [
+        "Орехи",
+        "Молочные продукты",
+        "Мёд",
+        "Глютен",
+        "Рыба"
+      ],
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "food_positions",
+  "info": {
+    "singularName": "food-position",
+    "pluralName": "food-positions",
+    "displayName": "FoodPosition",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "menuSectionTags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::menu-section-tag.menu-section-tag"
+    },
+    "foodVariations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::food-variation.food-variation"
+    }
+  }
+}

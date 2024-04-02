@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menu_section_tags",
+  "info": {
+    "singularName": "menu-section-tag",
+    "pluralName": "menu-section-tags",
+    "displayName": "MenuSectionTag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tag": {
+      "type": "enumeration",
+      "enum": [
+        "Рекомендуем",
+        "Сезонное меню",
+        "Салаты и закуски",
+        "Напитки",
+        "Десерты"
+      ]
+    }
+  }
+}
