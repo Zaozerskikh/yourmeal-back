@@ -729,6 +729,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.DefaultTo<true>;
     image: Attribute.Media;
     additional_info: Attribute.Text;
+    Orders: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -916,6 +921,42 @@ export interface ApiFoodPositionFoodPosition extends Schema.CollectionType {
   };
 }
 
+export interface ApiFoodPositionInOrderFoodPositionInOrder
+  extends Schema.CollectionType {
+  collectionName: 'food_position_in_orders';
+  info: {
+    singularName: 'food-position-in-order';
+    pluralName: 'food-position-in-orders';
+    displayName: 'FoodPositionInOrder';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    foodPosition: Attribute.Relation<
+      'api::food-position-in-order.food-position-in-order',
+      'oneToOne',
+      'api::food-position.food-position'
+    >;
+    selectedVariationId: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::food-position-in-order.food-position-in-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::food-position-in-order.food-position-in-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFoodVariationFoodVariation extends Schema.CollectionType {
   collectionName: 'food_variations';
   info: {
@@ -1036,6 +1077,95 @@ export interface ApiMenuSectionTagMenuSectionTag extends Schema.CollectionType {
   };
 }
 
+export interface ApiOrderOrder extends Schema.CollectionType {
+  collectionName: 'orders';
+  info: {
+    singularName: 'order';
+    pluralName: 'orders';
+    displayName: 'Order';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    User: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    foodPositions: Attribute.Relation<
+      'api::order.order',
+      'oneToMany',
+      'api::food-position-in-order.food-position-in-order'
+    >;
+    orderStatus: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::order-status.order-status'
+    >;
+    restaurant: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::restaurant-info.restaurant-info'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderStatusOrderStatus extends Schema.CollectionType {
+  collectionName: 'order_statuses';
+  info: {
+    singularName: 'order-status';
+    pluralName: 'order-statuses';
+    displayName: 'OrderStatus';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    status: Attribute.Enumeration<
+      [
+        '\u0421\u043E\u0437\u0434\u0430\u043D',
+        '\u041F\u0440\u0438\u043D\u044F\u0442',
+        '\u0418\u0437\u043C\u0435\u043D\u0435\u043D \u0438 \u043F\u0440\u0438\u043D\u044F\u0442',
+        '\u041E\u043F\u043B\u0430\u0447\u0435\u043D',
+        '\u041E\u0442\u043C\u0435\u043D\u0435\u043D'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order-status.order-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order-status.order-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRestarauntInfoTagRestarauntInfoTag
   extends Schema.CollectionType {
   collectionName: 'restaraunt_info_tags';
@@ -1117,6 +1247,11 @@ export interface ApiRestaurantInfoRestaurantInfo extends Schema.CollectionType {
       'oneToMany',
       'api::restaraunt-info-tag.restaraunt-info-tag'
     >;
+    orders: Attribute.Relation<
+      'api::restaurant-info.restaurant-info',
+      'oneToMany',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1156,9 +1291,12 @@ declare module '@strapi/types' {
       'api::allergy-tag.allergy-tag': ApiAllergyTagAllergyTag;
       'api::diet-tag.diet-tag': ApiDietTagDietTag;
       'api::food-position.food-position': ApiFoodPositionFoodPosition;
+      'api::food-position-in-order.food-position-in-order': ApiFoodPositionInOrderFoodPositionInOrder;
       'api::food-variation.food-variation': ApiFoodVariationFoodVariation;
       'api::medium-check.medium-check': ApiMediumCheckMediumCheck;
       'api::menu-section-tag.menu-section-tag': ApiMenuSectionTagMenuSectionTag;
+      'api::order.order': ApiOrderOrder;
+      'api::order-status.order-status': ApiOrderStatusOrderStatus;
       'api::restaraunt-info-tag.restaraunt-info-tag': ApiRestarauntInfoTagRestarauntInfoTag;
       'api::restaurant-info.restaurant-info': ApiRestaurantInfoRestaurantInfo;
     }

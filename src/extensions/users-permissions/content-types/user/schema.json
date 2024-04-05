@@ -83,6 +83,12 @@
     },
     "additional_info": {
       "type": "text"
+    },
+    "Orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "User"
     }
   }
 }

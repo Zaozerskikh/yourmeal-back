@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_statuses",
+  "info": {
+    "singularName": "order-status",
+    "pluralName": "order-statuses",
+    "displayName": "OrderStatus",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Создан",
+        "Принят",
+        "Изменен и принят",
+        "Оплачен",
+        "Отменен"
+      ]
+    }
+  }
+}

@@ -71,6 +71,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::restaraunt-info-tag.restaraunt-info-tag"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "restaurant"
     }
   }
 }

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "food_position_in_orders",
+  "info": {
+    "singularName": "food-position-in-order",
+    "pluralName": "food-position-in-orders",
+    "displayName": "FoodPositionInOrder"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "foodPosition": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::food-position.food-position"
+    },
+    "selectedVariationId": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    }
+  }
+}
